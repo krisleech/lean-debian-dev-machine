@@ -1,0 +1,38 @@
+---
+- name: install i3 Window Manager
+  apt: name=i3 state=installed
+
+  # xdotool is used in i3 config to map Super+c to Ctrl+c etc.
+- name: install xdotool
+  apt: name=xdotool state=installed
+
+# alternative i3 application launcher
+# - name: Install rofi (app launcher)
+#   apt: name=rofi state=installed
+
+- name: Create i3 config directories
+  sudo: false
+  file: path=/home/{{user}}/.config/{{item}} state=directory mode=0755
+  with_items:
+    - i3
+    - i3status
+
+- name: Copy i3 conf
+  sudo: false
+  template: src=templates/i3_config dest=/home/{{user}}/.config/i3/config
+
+- name: Copy i3status conf
+  sudo: false
+  template: src=templates/i3status_config dest=/home/{{user}}/.config/i3status/config
+
+- name: Install Compton
+  sudo: true
+  apt: name=compton state=installed
+
+- name: Install Feh (wallpaper)
+  sudo: true
+  apt: name=feh state=installed
+
+- name: Copy wallpapers
+  sudo: true
+  copy: src=templates/wallpapers/desktop.jpeg dest=/usr/share/backgrounds

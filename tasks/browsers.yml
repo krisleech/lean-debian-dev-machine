@@ -1,0 +1,3 @@
+- name: Install Firefox
+  apt: name=firefox-esr state=installed
+

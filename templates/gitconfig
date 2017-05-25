@@ -1,0 +1,18 @@
+[user]
+	name = {{ git_name }}
+	email = {{ git_email }}
+	signingkey = {{ git_signing_key }}
+[core]
+	editor = /usr/bin/nvim
+	excludesfile = /home/{{ user }}/.gitignore_global
+[push]
+	default = simple
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	last = log -1 HEAD
+	stashq = -c commit.gpgsign=false stash
+[commit]
+	#gpgsign = true

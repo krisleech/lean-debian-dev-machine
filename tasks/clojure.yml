@@ -1,0 +1,9 @@
+---
+- name: Install Java JRE
+  apt: name=default-jre state=installed
+
+- name: Install Lein (Clojure project automation)
+  get_url:
+    url: https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
+    dest: /home/{{user}}/bin/lein
+    mode: 0755

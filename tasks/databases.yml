@@ -1,0 +1,22 @@
+- name: Install MySQL
+  apt: name=mysql-server state=installed
+
+- name: Install MySQL Development headers
+  apt: name=libmysqlclient-dev state=installed
+
+- name: MySQL should be running
+  service: name=mysql state=running enabled=yes
+
+- name: Copy MySQL client configuration
+  sudo: false
+  copy: src=templates/my.cnf dest=/home/{{user}}/.my.cnf
+
+- name: Install SQLite
+  apt: name=sqlite3 state=installed
+
+- name: Install SQLite3 development headers
+  apt: name=libsqlite3-dev state=installed
+
+- name: Install RabbitMQ
+  sudo: true
+  apt: name=rabbitmq-server state=installed

@@ -1,0 +1,3 @@
+- name: Install NMAP
+  apt: pkg=nmap state=installed
+

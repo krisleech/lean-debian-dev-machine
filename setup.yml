@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  connection: local
+  sudo: yes
+
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - include: tasks/base.yml tags=base
+    - include: tasks/xorg.yml tags=desktop
+    - include: tasks/i3.yml tags=desktop
+    - include: tasks/browsers.yml tags=desktop
+    - include: tasks/clojure.yml tags=desktop

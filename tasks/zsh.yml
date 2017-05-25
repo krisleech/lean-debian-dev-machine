@@ -1,0 +1,20 @@
+---
+- name: install zsh
+  apt: pkg=zsh state=installed
+
+- name: Set ZSH as default shell
+  command: chsh -s /bin/zsh {{ user }}
+
+- name: Install Oh my ZSH
+  sudo: false
+  git: repo=https://github.com/robbyrussell/oh-my-zsh.git
+       dest=/home/{{user}}/.oh-my-zsh
+       accept_hostkey=yes
+
+- name: Copy zshrc
+  sudo: false
+  template: src=templates/zshrc dest=/home/{{user}}/.zshrc force=yes
+
+- name: Copy .zshrc.local (once)
+  sudo: false
+  copy: src=templates/zshrc.local dest=/home/{{user}}/.zshrc.local force=no

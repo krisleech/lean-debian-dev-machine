@@ -1,0 +1,33 @@
+general {
+        colors = true
+        interval = 5
+}
+
+order += "disk /"
+order += "path_exists VPN"
+order += "ethernet enp0s31f6"
+order += "load"
+order += "tztime local"
+
+ethernet enp0s31f6 {
+        # if you use %speed, i3status requires the cap_net_admin capability
+        format_up = "LAN: %ip (%speed)"
+        format_down = "LAN: down"
+}
+
+
+tztime local {
+        format = "%a %d/%b/%Y %H:%M %Z"
+}
+
+load {
+        format = "Load %5min"
+}
+
+
+disk "/" {
+        /* low_threshold = 10 */
+        /* thershold_type = percentage_free */
+        format = "Free: %free (%percentage_free)"
+}
+

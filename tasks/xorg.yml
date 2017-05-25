@@ -1,0 +1,7 @@
+
+- name: install xorg
+  apt: name=xorg state=installed
+
+- name: Copy xinitrc
+  sudo: false
+  template: src=templates/xinitrc dest=/home/{{user}}/.xinitrc

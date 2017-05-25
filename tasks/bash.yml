@@ -1,0 +1,4 @@
+---
+- name: Copy bashrc
+  sudo: false
+  template: src=templates/bashrc dest=/home/{{user}}/.bashrc

@@ -1,0 +1,17 @@
+HashKnownHosts no
+
+# This allows multiple terminals to the same host to share one SSH connection
+ControlMaster auto
+ControlPath /tmp/ssh_mux_%h_%p_%r
+
+# Keep connections for 4h ready for reconnection
+# ControlPersist 4h
+ControlPersist yes
+
+GSSAPIAuthentication no
+
+# Allow remote server to use my credentials to login to another server
+Host *
+  ForwardAgent yes
+  ServerAliveInterval 120
+  ServerAliveCountMax 36
